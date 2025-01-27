@@ -1,0 +1,12 @@
+[
+  {
+    "ContainingType": "DashboardController",
+    "Method": "Index",
+    "RelativePath": "api/Dashboard",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

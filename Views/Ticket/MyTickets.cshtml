@@ -1,0 +1,38 @@
+﻿@model List<WebApplication1.Models.Purchase>
+
+@{
+    ViewData["Title"] = "Moje bilety";
+}
+
+<h2>Moje zakupione bilety</h2>
+
+@if (!Model.Any())
+{
+    <p>Nie masz jeszcze zakupionych biletów.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nazwa wydarzenia</th>
+                <th>Ilość</th>
+                <th>Cena</th>
+                <th>Data zakupu</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var purchase in Model)
+            {
+                <tr>
+                    <td>@purchase.Ticket.Name</td>
+                    <td>@purchase.Quantity</td>
+                    <td>@purchase.TotalPrice zł</td>
+                    <td>@purchase.PurchaseDate.ToString("dd-MM-yyyy HH:mm")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<a href="@Url.Action("Index", "Ticket")" class="btn btn-secondary">Powrót do listy biletów</a>

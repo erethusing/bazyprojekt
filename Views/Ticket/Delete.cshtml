@@ -1,0 +1,15 @@
+﻿@model WebApplication1.Models.Ticket
+
+<h1>Czy na pewno chcesz usunąć ten bilet?</h1>
+
+<div>
+    <p><strong>Nazwa:</strong> @Model.Name</p>
+    <p><strong>Cena:</strong> @Model.Price</p>
+    <p><strong>Dostępne bilety:</strong> @Model.AvailableTickets</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Usuń</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Anuluj</a>
+</form>

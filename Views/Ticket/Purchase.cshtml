@@ -1,0 +1,12 @@
+﻿@model WebApplication1.Models.Ticket
+
+<h2>Zakup biletu</h2>
+
+<h3>@Model.Id</h3>
+<p>Price:@Model.Name jd</p>
+
+<form asp-action="Purchase" method="post">
+    <input type="hidden" name="TicketId" value="@Model.Id" />
+    <input type="number" name="Quantity" value="1" min="1" />
+    <button type="submit">Kup</button>
+</form>

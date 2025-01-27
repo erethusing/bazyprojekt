@@ -1,0 +1,25 @@
+﻿@model WebApplication1.Models.Purchase
+
+@{
+    ViewData["Title"] = "Zakup biletu";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (Model.Ticket != null)
+{
+    <form method="post">
+        <div class="form-group">
+            <label for="Quantity">Ilość biletów</label>
+            <input type="number" class="form-control" id="Quantity" name="Quantity" value="@Model.Quantity" min="1" max="@Model.Ticket.AvailableTickets" required />
+        </div>
+        <div class="form-group">
+            <label>Całkowita cena: @Model.TotalPrice</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Kup bilet</button>
+    </form>
+}
+else
+{
+    <p>Bilet nie istnieje.</p>
+}

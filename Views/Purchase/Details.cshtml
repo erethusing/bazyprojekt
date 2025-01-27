@@ -1,0 +1,12 @@
+﻿// Widok szczegółów biletu, aby użytkownik mógł dokonać zakupu
+[HttpGet]
+public async Task<IActionResult> Details(int id)
+{
+    var ticket = await _context.Tickets.FindAsync(id);
+    if (ticket == null)
+    {
+        return NotFound();
+    }
+
+    return View(ticket);  // Zwróci szczegóły biletu do widoku Purchase.cshtml
+}
