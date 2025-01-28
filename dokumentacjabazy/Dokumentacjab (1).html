@@ -1,0 +1,448 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dokumentacjab</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="project-documentation">Project Documentation</h1>
+<p><strong>Ticket Management Application</strong><br>
+A  application or managing tickets with the ability to add, edit, delete, and purchase tickets. The application also includes functionality for user registration and login, allowing users to create accounts, securely log in, and manage their ticket purchases.</p>
+<h1 id="api-documentation-for-accountcontroller">API Documentation for AccountController</h1>
+<h2 id="user-registration">1. User Registration</h2>
+<h3 id="endpoint-register"><strong>Endpoint:</strong> <code>/register</code></h3>
+<p><strong>Method:</strong> <code>POST</code><br>
+<strong>Authentication:</strong> Not Required<br>
+<strong>Description:</strong> Creates a new user account and logs them in automatically if registration is successful.<br>
+Request Body:</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Email</td>
+<td>String</td>
+<td>User’s email address (also username)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Password</td>
+<td>String</td>
+<td>User’s password</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table><h3 id="response"><strong>Response:</strong></h3>
+<h4 id="created"><strong>201 Created</strong></h4>
+<p>On success, returns a success message and redirects to the welcome page.</p>
+<h4 id="bad-request"><strong>400 Bad Request</strong></h4>
+<p>If validation fails, returns error messages.</p>
+<h2 id="render-registration-page">2. Render Registration Page</h2>
+<h3 id="endpoint-register-1"><strong>Endpoint:</strong> <code>/register</code></h3>
+<p><strong>Method:</strong> <code>GET</code><br>
+<strong>Authentication:</strong> Not Required<br>
+<strong>Description:</strong> Returns the registration form view.</p>
+<h2 id="user-login">3. User Login</h2>
+<h3 id="endpoint-login"><strong>Endpoint:</strong> <code>/login</code></h3>
+<p><strong>Method:</strong> <code>POST</code><br>
+<strong>Authentication:</strong> Not Required<br>
+<strong>Description:</strong> Authenticates a user using their email and password.</p>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Email</td>
+<td>String</td>
+<td>User’s email address (username)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Password</td>
+<td>String</td>
+<td>User’s password</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table><h3 id="response-1"><strong>Response:</strong></h3>
+<h4 id="ok"><strong>200 OK</strong></h4>
+<p>On success, redirects to the <code>Ticket</code> page or the specified return URL.</p>
+<h4 id="unauthorized"><strong>401 Unauthorized</strong></h4>
+<p>If credentials are incorrect, returns an error message.</p>
+<h2 id="render-login-page">4. Render Login Page</h2>
+<h3 id="endpoint-login-1"><strong>Endpoint:</strong> <code>/login</code></h3>
+<p><strong>Method:</strong> <code>GET</code><br>
+<strong>Authentication:</strong> Not Required<br>
+<strong>Description:</strong> Returns the login form view.</p>
+<h2 id="user-logout">5. User Logout</h2>
+<h3 id="endpoint-logout"><strong>Endpoint:</strong> <code>/logout</code></h3>
+<p><strong>Method:</strong> <code>POST</code><br>
+<strong>Authentication:</strong> Required<br>
+<strong>Description:</strong> Logs out the authenticated user.</p>
+<h3 id="response-2"><strong>Response:</strong></h3>
+<h4 id="ok-1"><strong>200 OK</strong></h4>
+<p>On success, logs out the user and redirects to the login page.</p>
+<h1 id="api-documentation-for-ticketcontroller">API Documentation for TicketController</h1>
+<h2 id="get-all-tickets">1. Get All Tickets</h2>
+<h3 id="endpoint-tickets"><strong>Endpoint:</strong> <code>/tickets</code></h3>
+<p><strong>Method:</strong> <code>GET</code><br>
+<strong>Authentication:</strong> Required<br>
+<strong>Description:</strong> Fetches a list of all available tickets.</p>
+<h3 id="response-3"><strong>Response:</strong></h3>
+<h4 id="ok-2"><strong>200 OK</strong></h4>
+<p>Returns a list of all tickets.</p>
+<h2 id="create-a-new-ticket">2. Create a New Ticket</h2>
+<h3 id="endpoint-ticketscreate"><strong>Endpoint:</strong> <code>/tickets/create</code></h3>
+<p><strong>Method:</strong> <code>POST</code><br>
+<strong>Authentication:</strong> Required (Admin Only)<br>
+<strong>Description:</strong> Creates a new ticket.</p>
+<h3 id="request-body"><strong>Request Body:</strong></h3>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>String</td>
+<td>Ticket name</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>String</td>
+<td>Ticket description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Price</td>
+<td>Decimal</td>
+<td>Ticket description</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>AvailableTickets</td>
+<td>Int</td>
+<td>Number of available tickets</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table><h3 id="response-4"><strong>Response:</strong></h3>
+<h4 id="created-1"><strong>201 Created</strong></h4>
+<p>Returns the created ticket.</p>
+<h4 id="bad-request-1"><strong>400 Bad Request</strong></h4>
+<p>Validation errors if data is incorrect.</p>
+<h2 id="get-ticket-by-id">3. Get Ticket by ID</h2>
+<h3 id="endpoint-ticketsid"><strong>Endpoint:</strong> <code>/tickets/{id}</code></h3>
+<p><strong>Method:</strong> <code>GET</code><br>
+<strong>Authentication:</strong> Required<br>
+<strong>Description:</strong> Fetches details of a specific ticket by ID.</p>
+<h3 id="response-5"><strong>Response:</strong></h3>
+<h4 id="ok-3"><strong>200 OK</strong></h4>
+<p>Returns the requested ticket.</p>
+<h4 id="not-found"><strong>404 Not Found</strong></h4>
+<p>If the ticket does not exist.</p>
+<h2 id="update-a-ticket">4. Update a Ticket</h2>
+<h3 id="endpoint-ticketsidedit"><strong>Endpoint:</strong> <code>/tickets/{id}/edit</code></h3>
+<p><strong>Method:</strong> <code>PUT</code><br>
+<strong>Authentication:</strong> Required (Admin Only)<br>
+<strong>Description:</strong> Updates an existing ticket.</p>
+<h3 id="request-body-1"><strong>Request Body:</strong></h3>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>String</td>
+<td>Ticket name</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>String</td>
+<td>Ticket description</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Price</td>
+<td>Decimal</td>
+<td>Ticket description</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>AvailableTickets</td>
+<td>Int</td>
+<td>Number of available tickets</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table><h3 id="response-6"><strong>Response:</strong></h3>
+<h4 id="ok-4"><strong>200 OK</strong></h4>
+<p>Returns the updated ticket.</p>
+<h4 id="not-found-1"><strong>404 Not Found</strong></h4>
+<p>If the ticket does not exist.</p>
+<h4 id="bad-request-2"><strong>400 Bad Request</strong></h4>
+<p>Validation errors.</p>
+<h2 id="delete-a-ticket">5. Delete a Ticket</h2>
+<h3 id="endpoint-ticketsiddelete"><strong>Endpoint:</strong> <code>/tickets/{id}/delete</code></h3>
+<p><strong>Method:</strong> <code>DELETE</code><br>
+<strong>Authentication:</strong> Required (Admin Only)<br>
+<strong>Description:</strong> Deletes a specific ticket by ID.</p>
+<h3 id="response-7"><strong>Response:</strong></h3>
+<h4 id="ok-5"><strong>200 OK</strong></h4>
+<p>Ticket deleted successfully.</p>
+<h4 id="not-found-2"><strong>404 Not Found</strong></h4>
+<p>If the ticket does not exist.</p>
+<h2 id="purchase-ticket">6. Purchase Ticket</h2>
+<h3 id="endpoint-ticketsidpurchase"><strong>Endpoint:</strong> <code>/tickets/{id}/purchase</code></h3>
+<p><strong>Method:</strong> <code>POST</code><br>
+<strong>Authentication:</strong> Required<br>
+<strong>Description:</strong> Purchases a ticket for the logged-in user.</p>
+<h3 id="request-body-2"><strong>Request Body:</strong></h3>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Quantity</td>
+<td>Int</td>
+<td>Number of tickets to purchase name</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table><h3 id="response-8"><strong>Response:</strong></h3>
+<h4 id="ok-6"><strong>200 OK</strong></h4>
+<p>Purchase successful.</p>
+<h4 id="bad-request-3"><strong>400 Bad Request</strong></h4>
+<p>If not enough tickets are available.</p>
+<h4 id="not-found-3"><strong>404 Not Found</strong></h4>
+<p>If the ticket does not exist.</p>
+<p>Oto dokumentacja API dla <code>TicketController</code>:</p>
+<hr>
+<h2 id="get-users-purchased-tickets">7. Get User’s Purchased Tickets</h2>
+<h3 id="endpoint-ticketsmy-tickets"><strong>Endpoint:</strong> <code>/tickets/my-tickets</code></h3>
+<p><strong>Method:</strong> <code>GET</code><br>
+<strong>Authentication:</strong> Required<br>
+<strong>Description:</strong> Fetches the list of tickets purchased by the logged-in user.</p>
+<h3 id="response-9"><strong>Response:</strong></h3>
+<h4 id="ok-7"><strong>200 OK</strong></h4>
+<p>Returns the list of purchased tickets.</p>
+<h2 id="view-purchase-page">8. View Purchase Page</h2>
+<h3 id="endpoint-ticketsidpurchase-1"><strong>Endpoint:</strong> <code>/tickets/{id}/purchase</code></h3>
+<p><strong>Method:</strong> <code>GET</code><br>
+<strong>Authentication:</strong> Required<br>
+<strong>Description:</strong> Returns the purchase form for a specific ticket.</p>
+<h4 id="response-10"><strong>Response:</strong></h4>
+<h4 id="ok-8"><strong>200 OK</strong></h4>
+<p>Returns the purchase page with ticket details.</p>
+<h4 id="not-found-4"><strong>404 Not Found</strong></h4>
+<p>If the ticket does not exist.</p>
+<h1 id="api-documentation-for-homecontroller">API Documentation for HomeController</h1>
+<h2 id="welcome-page">1. Welcome Page</h2>
+<h3 id="endpoint--welcome"><strong>Endpoint:</strong>  <code>/welcome</code></h3>
+<p><strong>Method:</strong>  <code>GET</code><br>
+<strong>Authentication:</strong> Not Required<br>
+<strong>Description:</strong> Returns the welcome page view.</p>
+<h3 id="response-11"><strong>Response:</strong></h3>
+<h4 id="ok-9"><strong>200 OK</strong></h4>
+<p>Returns the welcome page.</p>
+<h2 id="home-page">2. Home Page</h2>
+<h3 id="endpoint--"><strong>Endpoint:</strong>  <code>/</code></h3>
+<p><strong>Method:</strong>  <code>GET</code><br>
+<strong>Authentication:</strong> Not Required<br>
+<strong>Description:</strong> Returns the home page view.</p>
+<h3 id="response-12"><strong>Response:</strong></h3>
+<h4 id="ok-10"><strong>200 OK</strong></h4>
+<p>Returns the home page.</p>
+<h1 id="api-documentation-for-dashboardcontroller">API Documentation for DashboardController</h1>
+<h2 id="dashboard-page">1. Dashboard Page</h2>
+<h3 id="endpoint--apidashboard"><strong>Endpoint:</strong>  <code>/api/dashboard</code></h3>
+<p><strong>Method:</strong>  <code>GET</code><br>
+<strong>Authentication:</strong> Required<br>
+<strong>Description:</strong> Returns the main dashboard view for authenticated users.</p>
+<h3 id="response-13"><strong>Response:</strong></h3>
+<h4 id="ok-11"><strong>200 OK</strong></h4>
+<p>Returns the dashboard page.</p>
+<h4 id="unauthorized-1"><strong>401 Unauthorized</strong></h4>
+<p>If the user is not authenticated, access is denied.</p>
+<h2 id="database-structure">Database Structure</h2>
+<p>The application uses an SQL database to manage its data. Below is a description of the database structure, including all tables, their columns, and relationships.</p>
+<h3 id="tables">Tables</h3>
+<h4 id="users">1. Users</h4>
+<p>This table stores information about users for authentication and authorization.</p>
+
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Data Type</th>
+<th>Constraints</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Email</td>
+<td>VARCHAR(255)</td>
+<td>Primary Key, Not Null,Unique</td>
+<td>Email address of the user. Used as a unique identifier.</td>
+</tr>
+<tr>
+<td>Password</td>
+<td>VARCHAR(255)</td>
+<td>Not Null</td>
+<td>Hashed password for authentication.</td>
+</tr>
+</tbody>
+</table><h4 id="tickets">2. Tickets</h4>
+<p>This table stores information about event tickets.</p>
+
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Data Type</th>
+<th>Constraints</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID</td>
+<td>INT</td>
+<td>Primary Key, Auto-Increment</td>
+<td>Unique identifier for each ticket.</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>VARCHAR(255)</td>
+<td>Not Null</td>
+<td>Name of the event related to the ticket.</td>
+</tr>
+<tr>
+<td>AvailableTickets</td>
+<td>INT</td>
+<td>Not Null</td>
+<td>Name of the event related to the ticket.</td>
+</tr>
+<tr>
+<td>Price</td>
+<td>DECIMAL(10,2)</td>
+<td>Not Null</td>
+<td>Price of a single ticket.</td>
+</tr>
+</tbody>
+</table><h4 id="purchases">3. Purchases</h4>
+<p>This table stores details about ticket purchases.</p>
+
+<table>
+<thead>
+<tr>
+<th>Column Name</th>
+<th>Data Type</th>
+<th>Constraints</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID</td>
+<td>INT</td>
+<td>Primary Key, Auto-Increment</td>
+<td>Unique identifier for each purchase.</td>
+</tr>
+<tr>
+<td>TicketId</td>
+<td>INT</td>
+<td>Foreign Key (References Tickets(ID)), Not Null</td>
+<td>Ticket associated with the purchase.</td>
+</tr>
+<tr>
+<td>PurchaseDate</td>
+<td>DATETIME</td>
+<td>Not Null</td>
+<td>Date and time when the purchase was made.</td>
+</tr>
+<tr>
+<td>Quantity</td>
+<td>INT(10,2)</td>
+<td>Not Null</td>
+<td>Number of tickets purchased.</td>
+</tr>
+<tr>
+<td>TotalPrice</td>
+<td>DECIMAL(10,2)</td>
+<td>Not Null</td>
+<td>Total price for the purchase.</td>
+</tr>
+<tr>
+<td>UserId</td>
+<td>VARCHAR(255)</td>
+<td>Foreign Key (References Users(Email)), Not Null</td>
+<td>User who made the purchase.</td>
+</tr>
+</tbody>
+</table><h3 id="relationships">Relationships</h3>
+<ol>
+<li>
+<p><strong>Users &amp; Purchases</strong>: The <code>Purchases</code> table references the <code>Users</code> table through the <code>UserId</code> column. This ensures that each purchase is associated with a valid user.</p>
+</li>
+<li>
+<p><strong>Tickets &amp; Purchases</strong>: The <code>Purchases</code> table references the <code>Tickets</code> table through the <code>TicketId</code> column. This maintains referential integrity, ensuring that each purchase corresponds to an existing ticket.</p>
+</li>
+</ol>
+<h3 id="authentication-models">Authentication Models</h3>
+<p>Besides the core database structure, the application includes the following authentication models:</p>
+<ul>
+<li>
+<p><strong>LoginViewModel</strong>: Used to authenticate users with an email and password.</p>
+</li>
+<li>
+<p><strong>RegisterViewModel</strong>: Used for user registration, requiring an email, password, and password confirmation.</p>
+</li>
+</ul>
+<p>These models facilitate authentication but do not directly affect the database schema, as they are used in the application logic rather than being stored in the database directly.</p>
+<p>This database design ensures efficient management of user authentication, event tickets, and purchase transactions while maintaining data integrity through relational constraints.</p>
+</div>
+</body>
+
+</html>
